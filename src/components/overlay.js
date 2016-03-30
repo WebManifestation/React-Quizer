@@ -2,6 +2,24 @@ import React from 'react';
 
 export default class Overlay extends React.Component {
 
+	transition(time) {
+		return {
+			'MozTransition': 'all ' + time + ' ease',
+			'OTransition': 'all ' + time + ' ease',
+			'WebkitTransition': 'all ' + time + ' ease',
+			transition: 'all ' + time + ' ease'
+		};
+	}
+
+	transform(transformString) {
+		return {
+			'MozTransform': transformString,
+			'OTransform': transformString,
+			'WebkitTransform': transformString,
+			transform: transformString,
+		};
+	}
+
 	constructor(props) {
 		super(props);
 
@@ -20,9 +38,12 @@ export default class Overlay extends React.Component {
 			height: window.innerHeight
 		};
 
-		if (!this.props.onScreen) {
+		Object.assign(style, this.transition('1s'));
 
-			style.display = 'none';
+		if (!this.props.onScreen) {
+			Object.assign(style, this.transform('translateX(-'+ window.innerWidth +'px)'));
+			// style.display = 'none';
+			// style.transform = 'translateX(-1700px)';
 		}
 
 		return style;

@@ -29,7 +29,7 @@ export default class App extends React.Component {
 		this.setState({ overlay: false });
 	}
 	closeOverlay() {
-		console.log('test');
+		// console.log('test');
 		this.setState({ overlay: true });
 	}
 
