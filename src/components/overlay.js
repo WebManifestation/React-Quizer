@@ -23,19 +23,28 @@ export default class Overlay extends React.Component {
 	constructor(props) {
 		super(props);
 
+		this.state = {
+			bgColor: this.props.bgColor,
+			bgImage: this.props.bgImage,
+		}
+
 	}
 
 	getStyles() {
 
 		let style = {
-			backgroundColor: 'slateblue',
+			backgroundColor: this.state.bgColor,
+			backgroundImage: 'url(' + this.state.bgImage + ')',
 			top: '0',
 			left: '0',
 			position: 'fixed',
 			zIndex: '99999',
 			overflow: 'auto',
 			width: '100%',
-			height: window.innerHeight
+			height: window.innerHeight,
+			backgroundSize: '100px',
+			backgroundPosition: '50% 50%',
+			backgroundRepeat: 'no-repeat'
 		};
 
 		Object.assign(style, this.transition('1s'));
@@ -54,6 +63,7 @@ export default class Overlay extends React.Component {
 	// }
 
 	render() {
+		// console.log(this);
 		return (
 			<div className="overlay" style={this.getStyles()} onClick={this.props.openOverlay} />
 			)
