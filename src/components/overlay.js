@@ -24,9 +24,11 @@ export default class Overlay extends React.Component {
 		super(props);
 
 		this.state = {
-			bgColor: this.props.bgColor,
-			bgImage: this.props.bgImage,
+			bgColor: props.bgColor,
+			bgImage: props.bgImage,
 		}
+
+		console.log(this.state);
 
 	}
 
@@ -47,10 +49,14 @@ export default class Overlay extends React.Component {
 			backgroundRepeat: 'no-repeat'
 		};
 
-		Object.assign(style, this.transition('1s'));
+		Object.assign(style, this.transition('0.5s'));
 
 		if (!this.props.onScreen) {
-			Object.assign(style, this.transform('translateX(-'+ window.innerWidth +'px)'));
+
+			Object.assign(style, this.transition('0.75s'));
+
+			Object.assign(style, this.transform('translateY('+ window.innerHeight +'px)'));
+			// Object.assign(style, { opacity: 0});
 			// style.display = 'none';
 			// style.transform = 'translateX(-1700px)';
 		}
